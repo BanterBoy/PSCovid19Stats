@@ -25,4 +25,21 @@ Once you've downloaded the repo place the PSCovid19Stats folder in any path in y
 
 Once it's in one of those paths you can either import it manually by ``Import-Module PSCovid19Stats`` or rely on auto-module loading.
 
+### Once Installed
+
+```
+PS C:\GitRepos> Get-Command -Module PSCovid19Stats
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Get-CovidCountriesStats                            1.0.0      PSCovid19Stats
+Function        Get-CovidCountryStats                              1.0.0      PSCovid19Stats
+Function        Get-CovidHistoricalData                            1.0.0      PSCovid19Stats
+Function        Get-CovidjhucsseData                               1.0.0      PSCovid19Stats
+Function        Get-CovidStateStats                                1.0.0      PSCovid19Stats
+Function        Get-CovidWorldStats                                1.0.0      PSCovid19Stats
+```
+
+![COVID-19 Example](https://psciscomeraki.lukeleigh.com/assets/images/pscovidscrnsht.png)
+
 [License](/LICENSE)
