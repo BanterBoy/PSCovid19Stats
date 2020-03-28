@@ -1,27 +1,35 @@
-ALL
-$AllResponses = Invoke-RestMethod 'https://corona.lmao.ninja/all' -Method 'GET' -Headers $headers -Body $body
+#ALL
+$AllHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+$AllHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
+$AllResponses = Invoke-RestMethod 'https://corona.lmao.ninja/all' -Method 'GET' -Headers $AllHeaders -Body $body
 $AllResponses | ConvertTo-Json
 
-COUNTRIES
-$CountriesResponses = Invoke-RestMethod 'https://corona.lmao.ninja/countries?sort=country' -Method 'GET' -Headers $headers -Body $body
+#COUNTRIES
+$CountriesHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+$CountriesHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
+$CountriesResponses = Invoke-RestMethod 'https://corona.lmao.ninja/countries?sort=country' -Method 'GET' -Headers $CountriesHeaders -Body $body
 $CountriesResponses | ConvertTo-Json
 
-COUNTRY
-$CountryResponse = Invoke-RestMethod 'https://corona.lmao.ninja/countries/Uk' -Method 'GET' -Headers $headers -Body $body
+#COUNTRY
+$CountryHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+$CountryHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
+$CountryResponse = Invoke-RestMethod 'https://corona.lmao.ninja/countries/Uk' -Method 'GET' -Headers $CountryHeaders -Body $body
 $CountryResponse | ConvertTo-Json
 
-STATES
-$StateResponses = Invoke-RestMethod 'https://corona.lmao.ninja/states' -Method 'GET' -Headers $headers -Body $body
+#STATES
+$StateHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+$StateHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
+$StateResponses = Invoke-RestMethod 'https://corona.lmao.ninja/states' -Method 'GET' -Headers $StateHeaders -Body $body
 $StateResponses | ConvertTo-Json
 
-JOHN HOPKINS CSSE DATA
-$JohnHopkinsData = Invoke-RestMethod 'https://corona.lmao.ninja/jhucsse' -Method 'GET' -Headers $headers -Body $body
-$JohnHopkinsData | ConvertTo-Json
+#JOHN HOPKINS CSSE DATA
+$jhucsseDataHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+$jhucsseDataHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
+$jhucsseData = Invoke-RestMethod 'https://corona.lmao.ninja/jhucsse' -Method 'GET' -Headers $jhucsseDataHeaders -Body $body
+$jhucsseData | ConvertTo-Json
 
-HISTORICAL DATA
+#HISTORICAL DATA
 $HistoricalDataHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
 $HistoricalDataHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-
-$HistoricalData = Invoke-RestMethod 'https://corona.lmao.ninja/v2/historical' -Method 'GET' -Headers $headers -Body $body
+$HistoricalData = Invoke-RestMethod 'https://corona.lmao.ninja/v2/historical' -Method 'GET' -Headers $HistoricalDataHeaders -Body $body
 $HistoricalData | ConvertTo-Json
-
