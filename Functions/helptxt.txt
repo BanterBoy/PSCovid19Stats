@@ -1,0 +1,21 @@
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .EXAMPLE
+
+    .INPUTS
+
+    .OUTPUTS
+
+    .NOTES
+    Author:     Luke Leigh
+    Website:    https://blog.lukeleigh.com/
+    LinkedIn:   https://www.linkedin.com/in/lukeleigh/
+    GitHub:     https://github.com/BanterBoy/
+    GitHubGist: https://gist.github.com/BanterBoy
+
+    .LINK
+    https://github.com/BanterBoy/PSCovid19Stats/wiki
+#>
