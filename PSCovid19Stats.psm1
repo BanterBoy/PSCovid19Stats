@@ -277,7 +277,7 @@ function Get-CovidWorldStats {
                     Cases     = $Response.cases
                     Deaths    = $Response.Deaths
                     Recovered = $Response.Recovered
-                    Updated   = $Response.Updated
+                    Updated   = (Get-Date).Add(-$Response.Updated)
                     Active    = $Response.Active
                 }
             }
@@ -286,7 +286,7 @@ function Get-CovidWorldStats {
                     Cases     = $Response.cases
                     Deaths    = $Response.Deaths
                     Recovered = $Response.Recovered
-                    Updated   = $Response.Updated
+                    Updated   = (Get-Date).Add(-$Response.Updated)
                     Active    = $Response.Active
                 }
             }
