@@ -1,5 +1,7 @@
 # PSCovid19Stats
- Extracting data from the NovelCOVID API (github.com/NovelCOVID/API)
+
+Extracting data from the NovelCOVID API (github.com/NovelCOVID/API)
+<https://covid-19-apis.postman.com>
 
 ## Getting Started
 
