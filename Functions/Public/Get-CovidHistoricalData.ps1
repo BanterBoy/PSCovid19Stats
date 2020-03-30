@@ -1,5 +1,33 @@
 function Get-CovidHistoricalData {
 
+    <#
+        .SYNOPSIS
+        Command used to extract historical data from the NovelCOVID API (github.com/NovelCOVID/API)
+
+        .DESCRIPTION
+        Command used to extract historical data from the NovelCOVID API (github.com/NovelCOVID/API)
+
+        .INPUTS
+        None. You cannot pipe objects to Get-CovidHistoricalData
+
+        .OUTPUTS
+        System.String. Get-CovidHistoricalData returns a string with all of the Covid-19 stats for every
+        country affected
+
+        .EXAMPLE
+        PS C:\GitRepos> Get-CovidHistoricalData
+
+        .LINK
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidHistoricalData
+
+        .NOTES
+        Author: Luke Leigh  
+        Website: https://blog.lukeleigh.com  
+        LinkedIn: https://www.linkedin.com/in/lukeleigh  
+        GitHub: https://github.com/BanterBoy  
+        GitHubGist: https://gist.github.com/BanterBoy  
+    #>
+
     BEGIN {
     
     }

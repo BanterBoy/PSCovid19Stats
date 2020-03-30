@@ -1,7 +1,41 @@
 function Get-CovidCountriesStats {
 
-    BEGIN {
+    <#
+        .SYNOPSIS
+        Command used to extract data (Country Stats) from the NovelCOVID API (github.com/NovelCOVID/API)
     
+        .DESCRIPTION
+        Command used to extract data (Country Stats) from the NovelCOVID API (github.com/NovelCOVID/API)
+        Returns data of all countries that has COVID-19
+    
+        .INPUTS
+        None. You cannot pipe objects to Get-CovidCountryStats
+    
+        .OUTPUTS
+        System.String. Get-CovidCountriesStats returns a string with all of the Covid-19 stats for every
+        country affected
+    
+        .EXAMPLE
+        PS C:\GitRepos> Get-CovidCountriesStats | Format-Table -AutoSize                                                                                                                                
+        DeathsPerOneMillion TodayCases CasesPerOneMillion Deaths Critical Active Recovered Country  TodayDeaths  Cases
+        ------------------- ---------- ------------------ ------ -------- ------ --------- -------  -----------  -----
+        0.07                0           0.5               1      0        6      0         Zimbabwe 0            7
+        0                   1           2                 0      0        29     0         Zambia   0            29
+
+        .LINK
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidCountriesStats
+    
+        .NOTES
+        Author:     Luke Leigh
+        Website:    https://blog.lukeleigh.com/
+        LinkedIn:   https://www.linkedin.com/in/lukeleigh/
+        GitHub:     https://github.com/BanterBoy/
+        GitHubGist: https://gist.github.com/BanterBoy
+    
+    #>
+
+    BEGIN {
+
     }
 
     PROCESS {
@@ -51,13 +85,57 @@ function Get-CovidCountriesStats {
 
 }
 
-
 function Get-CovidCountryStats {
+
+    <#
+        .SYNOPSIS
+        Command used to extract data (Country Stats) from the NovelCOVID API (github.com/NovelCOVID/API)
     
+        .DESCRIPTION
+        Command used to extract data (Country Stats) from the NovelCOVID API (github.com/NovelCOVID/API)
+        Returns data of a specific country.
+    
+        .PARAMETER Country
+        This is a mandatory field which you can enter manually or using tab to cycle through the options.
+        This field uses the standard [ISO Country Codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
+    
+        .INPUTS
+        None. You cannot pipe objects to Get-CovidCountryStats
+    
+        .OUTPUTS
+        System.String. Get-CovidCountriesStats returns a string with all of the Covid-19 stats for the
+        specified country.
+    
+        .EXAMPLE
+        PS C:\GitRepos> Get-CovidCountryStats -Country UK
+        
+        DeathsPerOneMillion : 18
+        TodayCases          : 2433
+        CasesPerOneMillion  : 288
+        Deaths              : 1228
+        Critical            : 163
+        Active              : 18159
+        Recovered           : 135
+        Country             : UK
+        TodayDeaths         : 209
+        Cases               : 19522
+
+        .LINK
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidCountryStats
+    
+        .NOTES
+        Author:     Luke Leigh
+        Website:    https://blog.lukeleigh.com/
+        LinkedIn:   https://www.linkedin.com/in/lukeleigh/
+        GitHub:     https://github.com/BanterBoy/
+        GitHubGist: https://gist.github.com/BanterBoy
+    
+    #>
+
     [CmdletBinding(DefaultParameterSetName = 'ParameterSet1',
         SupportsShouldProcess = $false,
         PositionalBinding = $false,
-        HelpUri = 'http://www.microsoft.com/',
+        HelpUri = 'https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidCountryStats',
         ConfirmImpact = 'Medium')]
     param(
         [Parameter(Mandatory = $true,
@@ -124,6 +202,34 @@ function Get-CovidCountryStats {
 
 function Get-CovidHistoricalData {
 
+    <#
+        .SYNOPSIS
+        Command used to extract historical data from the NovelCOVID API (github.com/NovelCOVID/API)
+
+        .DESCRIPTION
+        Command used to extract historical data from the NovelCOVID API (github.com/NovelCOVID/API)
+
+        .INPUTS
+        None. You cannot pipe objects to Get-CovidHistoricalData
+
+        .OUTPUTS
+        System.String. Get-CovidHistoricalData returns a string with all of the Covid-19 stats for every
+        country affected
+
+        .EXAMPLE
+        PS C:\GitRepos> Get-CovidHistoricalData
+
+        .LINK
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidHistoricalData
+
+        .NOTES
+        Author: Luke Leigh  
+        Website: https://blog.lukeleigh.com  
+        LinkedIn: https://www.linkedin.com/in/lukeleigh  
+        GitHub: https://github.com/BanterBoy  
+        GitHubGist: https://gist.github.com/BanterBoy  
+    #>
+
     BEGIN {
     
     }
@@ -164,6 +270,38 @@ function Get-CovidHistoricalData {
 }
 
 function Get-CovidjhucsseData {
+
+    <#
+
+        .SYNOPSIS
+        Command used to extract John HOpkins CSSE Data from the NovelCOVID API (github.com/NovelCOVID/API)
+
+        .DESCRIPTION
+        Command used to extract John HOpkins CSSE Data from the NovelCOVID API (github.com/NovelCOVID/API)
+        Return data from the John Hopkins CSSE Data Repository (Provinces and such).
+
+        .INPUTS
+        None. You cannot pipe objects to Get-CovidjhucsseData
+
+        .OUTPUTS
+        System.String. Get-CovidjhucsseData returns a string with all of the Covid-19 stats for every
+        country affected
+
+        .EXAMPLE
+        PS C:\GitRepos> Get-CovidjhucsseData
+
+        .LINK
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidjhucsseData
+
+        .NOTES
+        Author: Luke Leigh  
+        Website: https://blog.lukeleigh.com  
+        LinkedIn: https://www.linkedin.com/in/lukeleigh  
+        GitHub: https://github.com/BanterBoy  
+        GitHubGist: https://gist.github.com/BanterBoy  
+
+#>
+
 
     BEGIN {
     
@@ -214,8 +352,38 @@ function Get-CovidjhucsseData {
 
 }
 
-
 function Get-CovidStateStats {
+
+    <#
+
+        .SYNOPSIS
+        Command used to extract Data for all US States from the NovelCOVID API (github.com/NovelCOVID/API)
+
+        .DESCRIPTION
+        Command used to extract John HOpkins CSSE Data from the NovelCOVID API (github.com/NovelCOVID/API)
+        Return data from the John Hopkins CSSE Data Repository (Provinces and such).
+
+        .INPUTS
+        None. You cannot pipe objects to Get-CovidStateStats
+
+        .OUTPUTS
+        System.String. Get-CovidStateStats returns a string with all of the Covid-19 stats for all US States
+
+        .EXAMPLE
+        PS C:\GitRepos> Get-CovidStateStats
+
+        .LINK
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidStateStats
+
+        .NOTES
+        Author: Luke Leigh  
+        Website: https://blog.lukeleigh.com  
+        LinkedIn: https://www.linkedin.com/in/lukeleigh  
+        GitHub: https://github.com/BanterBoy  
+        GitHubGist: https://gist.github.com/BanterBoy  
+
+    #>
+
 
     BEGIN {
         
@@ -261,6 +429,42 @@ function Get-CovidStateStats {
 }
 
 function Get-CovidWorldStats {
+
+    <#
+
+        .SYNOPSIS
+        Command used to extract Data for all Returns all total cases, recovery, and deaths from the NovelCOVID API (github.com/NovelCOVID/API)
+
+        .DESCRIPTION
+        Command used to extract John HOpkins CSSE Data from the NovelCOVID API (github.com/NovelCOVID/API)
+        Returns all total cases, recovery, and deaths.
+
+        .INPUTS
+        None. You cannot pipe objects to Get-CovidWorldStats
+
+        .OUTPUTS
+        System.String. Get-CovidWorldStats returns a string of all total cases, recovery, and deaths.
+
+        .EXAMPLE
+        PS C:\GitRepos> Get-CovidWorldStats
+        Active    : 536625
+        Recovered : 151312
+        Deaths    : 33966
+        Cases     : 721903
+        Updated   : 30/03/2020 02:08:07
+
+        .LINK
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidWorldStats
+
+        .NOTES
+        Author: Luke Leigh  
+        Website: https://blog.lukeleigh.com  
+        LinkedIn: https://www.linkedin.com/in/lukeleigh  
+        GitHub: https://github.com/BanterBoy  
+        GitHubGist: https://gist.github.com/BanterBoy  
+
+    #>
+
 
     BEGIN {
     
