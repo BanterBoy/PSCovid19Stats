@@ -30,15 +30,12 @@ NAME
 SYNOPSIS
     Command used to extract data (Country Stats) from the NovelCOVID API (github.com/NovelCOVID/API)
 
-
 SYNTAX
     Get-CovidCountryStats -Country <String> [<CommonParameters>]
-
 
 DESCRIPTION
     Command used to extract data (Country Stats) from the NovelCOVID API (github.com/NovelCOVID/API)
     Returns data of a specific country.
-
 
 RELATED LINKS
     https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidCountryStats
