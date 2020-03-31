@@ -44,6 +44,7 @@ function Get-CovidCountryStats {
         GitHubGist: https://gist.github.com/BanterBoy
     
     #>
+    
 
     [CmdletBinding(DefaultParameterSetName = 'ParameterSet1',
         SupportsShouldProcess = $false,
@@ -58,6 +59,13 @@ function Get-CovidCountryStats {
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
         [OutputType([String])]
+        [ArgumentCompleter( {
+                $Content = Invoke-RestMethod -Uri 'https://datahub.io/core/country-list/r/data.json'
+                $ISOCodes = $Content | Sort-Object -Property Code
+                foreach ($Code in $ISOCodes) {
+                    $Code.Code
+                }
+            }) ]
         [string]
         $Country
     )
