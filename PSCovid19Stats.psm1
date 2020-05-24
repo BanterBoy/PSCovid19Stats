@@ -41,7 +41,7 @@ function Get-CovidCountriesStats {
     PROCESS {
         $CountriesHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
         $CountriesHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $CountriesResponses = Invoke-RestMethod 'https://corona.lmao.ninja/countries?sort=country' -Method 'GET' -Headers $CountriesHeaders -Body $body
+        $CountriesResponses = Invoke-RestMethod 'https://corona.lmao.ninja/v2/countries?sort=country' -Method 'GET' -Headers $CountriesHeaders -Body $body
 
         foreach ($Response in $CountriesResponses) {
             try {
@@ -163,7 +163,7 @@ function Get-CovidCountryStats {
     PROCESS {
         $CountryHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
         $CountryHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $CountryResponse = Invoke-RestMethod "https://corona.lmao.ninja/countries/$Country" -Method 'GET' -Headers $CountryHeaders -Body $body
+        $CountryResponse = Invoke-RestMethod "https://corona.lmao.ninja/v2/countries/$Country" -Method 'GET' -Headers $CountryHeaders -Body $body
         
         foreach ($Response in $CountryResponse) {
             try {
@@ -244,7 +244,7 @@ function Get-CovidHistoricalData {
     PROCESS {
         $HistoricalDataHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
         $HistoricalDataHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $HistoricalData = Invoke-RestMethod 'https://corona.lmao.ninja/v2/historical' -Method 'GET' -Headers $HistoricalDataHeaders -Body $body
+        $HistoricalData = Invoke-RestMethod 'https://corona.lmao.ninja/v2/v2/historical' -Method 'GET' -Headers $HistoricalDataHeaders -Body $body
 
         foreach ($Data in $HistoricalData) {
             try {
@@ -317,7 +317,7 @@ function Get-CovidjhucsseData {
     PROCESS {
         $jhucsseDataHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
         $jhucsseDataHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $jhucsseData = Invoke-RestMethod 'https://corona.lmao.ninja/jhucsse' -Method 'GET' -Headers $jhucsseDataHeaders -Body $body
+        $jhucsseData = Invoke-RestMethod 'https://corona.lmao.ninja/v2/jhucsse' -Method 'GET' -Headers $jhucsseDataHeaders -Body $body
 
         foreach ($jhucsse in $jhucsseData) {
             try {
@@ -399,7 +399,7 @@ function Get-CovidStateStats {
     PROCESS {
         $StateHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
         $StateHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $StateResponses = Invoke-RestMethod 'https://corona.lmao.ninja/states' -Method 'GET' -Headers $StateHeaders -Body $body
+        $StateResponses = Invoke-RestMethod 'https://corona.lmao.ninja/v2/states' -Method 'GET' -Headers $StateHeaders -Body $body
         
         foreach ($Response in $StateResponses) {
             try {
@@ -480,7 +480,7 @@ function Get-CovidWorldStats {
     PROCESS {
         $AllHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
         $AllHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $AllResponses = Invoke-RestMethod 'https://corona.lmao.ninja/all' -Method 'GET' -Headers $AllHeaders -Body $body
+        $AllResponses = Invoke-RestMethod 'https://corona.lmao.ninja/v2/all' -Method 'GET' -Headers $AllHeaders -Body $body
         $EpochStart = Get-Date "01/01/1970 00:00:00"
 
         foreach ($Response in $AllResponses) {

@@ -39,7 +39,7 @@ function Get-CovidjhucsseData {
     PROCESS {
         $jhucsseDataHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
         $jhucsseDataHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $jhucsseData = Invoke-RestMethod 'https://corona.lmao.ninja/jhucsse' -Method 'GET' -Headers $jhucsseDataHeaders -Body $body
+        $jhucsseData = Invoke-RestMethod 'https://corona.lmao.ninja/v2/jhucsse' -Method 'GET' -Headers $jhucsseDataHeaders -Body $body
 
         foreach ($jhucsse in $jhucsseData) {
             try {

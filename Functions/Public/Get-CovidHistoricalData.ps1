@@ -35,7 +35,7 @@ function Get-CovidHistoricalData {
     PROCESS {
         $HistoricalDataHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
         $HistoricalDataHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $HistoricalData = Invoke-RestMethod 'https://corona.lmao.ninja/v2/historical' -Method 'GET' -Headers $HistoricalDataHeaders -Body $body
+        $HistoricalData = Invoke-RestMethod 'https://corona.lmao.ninja/v2/v2/historical' -Method 'GET' -Headers $HistoricalDataHeaders -Body $body
 
         foreach ($Data in $HistoricalData) {
             try {

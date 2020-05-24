@@ -38,7 +38,7 @@ function Get-CovidStateStats {
     PROCESS {
         $StateHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
         $StateHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $StateResponses = Invoke-RestMethod 'https://corona.lmao.ninja/states' -Method 'GET' -Headers $StateHeaders -Body $body
+        $StateResponses = Invoke-RestMethod 'https://corona.lmao.ninja/v2/states' -Method 'GET' -Headers $StateHeaders -Body $body
         
         foreach ($Response in $StateResponses) {
             try {

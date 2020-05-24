@@ -41,7 +41,7 @@ function Get-CovidCountriesStats {
     PROCESS {
         $CountriesHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
         $CountriesHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $CountriesResponses = Invoke-RestMethod 'https://corona.lmao.ninja/countries?sort=country' -Method 'GET' -Headers $CountriesHeaders -Body $body
+        $CountriesResponses = Invoke-RestMethod 'https://corona.lmao.ninja/v2/countries?sort=country' -Method 'GET' -Headers $CountriesHeaders -Body $body
 
         foreach ($Response in $CountriesResponses) {
             try {
