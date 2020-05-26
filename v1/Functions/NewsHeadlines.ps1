@@ -42,9 +42,7 @@ Out-File C:\inetpub\wwwroot\NewsHeadlines.md -Encoding utf8 -Append
 
 #>
 
-
-New-Item -Path "C:\inetpub\wwwroot\NewsHeadlines.md" -ItemType File -Value "---
-" -Force
+New-Item -Path "C:\inetpub\wwwroot\NewsHeadlines.md" -ItemType File -Value "---" -Force
 Add-Content "C:\inetpub\wwwroot\NewsHeadlines.md" "Title: News Headlines"
 Add-Content "C:\inetpub\wwwroot\NewsHeadlines.md" "TemplateName: readthedocs"
 Add-Content "C:\inetpub\wwwroot\NewsHeadlines.md" "Robots: noindex, nofollow"
@@ -54,7 +52,6 @@ Add-Content "C:\inetpub\wwwroot\NewsHeadlines.md" ""
 
 $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
 $headers.Add("Cookie", "__cfduid=deb005a07115d3f6eeb11a3e6f0448ea01585351583")
-$response = Invoke-RestMethod 'https://newsapi.org/v2/everything?q=COVID&from=2020-03-16&sortBy=publishedAt&pageSize=20&page=1&language=en&apiKey=dbe0d66c3040490eb020abc2c47da87c' -Method 'GET' -Headers $headers -Body $body
-$news = $response.articles | Select-Object -Property Title,publishedAt,url
-ConvertTo-Markdown -Inputobject $news -Width 150 -AsTable |
-Out-File C:\inetpub\wwwroot\NewsHeadlines.md -Encoding utf8
+$response = Invoke-RestMethod 'https://newsapi.org/v2/everything?q=COVID&from=2020-05-01&sortBy=publishedAt&pageSize=20&page=1&language=en&apiKey=dbe0d66c3040490eb020abc2c47da87c' -Method 'GET' -Headers $headers -Body $body
+$news = $response.articles | Where-Object { $_.url -like "http*" } | Select-Object -Property Title,content,url,publishedAt
+ConvertTo-Markdown -Inputobject $news -Width 200 -AsTable | Out-File C:\inetpub\wwwroot\NewsHeadlines.md -Encoding utf8
