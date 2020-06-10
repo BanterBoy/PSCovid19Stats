@@ -10,3 +10,4 @@ $AllDateResponses = Invoke-RestMethod 'https://corona.lmao.ninja/v2/all?yesterda
 true
 false
 
+
