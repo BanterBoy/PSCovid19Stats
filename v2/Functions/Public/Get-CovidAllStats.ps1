@@ -2,16 +2,16 @@ function Get-CovidAllStats {
 
     <#
         .SYNOPSIS
-        Command used to extract data (Country Stats) from the NovelCOVID API (github.com/NovelCOVID/API)
+        Command used to extract data (Global Stats) from the NovelCOVID API (github.com/NovelCOVID/API).
     
         .DESCRIPTION
-        Get global stats: cases, deaths, recovered, time last updated, and active cases. Data is updated every 10 minutes.
+        This command can be used to extract data (Global Stats) from the NovelCOVID API (github.com/NovelCOVID/API). It will extract the global statistics and includes: cases, deaths, recovered, time last updated, and active cases. This data is updated every 10 minutes.
     
         .INPUTS
         None. You cannot pipe objects to Get-CovidAllStats
     
         .OUTPUTS
-        System.String. Get-CovidAllStats returns a string with all of the Covid-19 stats for every country affected
+        System.String. Get-CovidAllStats returns a string with all of the stats for every country affected with Covid-19.
     
         .EXAMPLE
         Get-CovidAllStats
