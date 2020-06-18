@@ -1,4 +1,3 @@
-
 function Show-CountryCodes {
     <#
         .SYNOPSIS
