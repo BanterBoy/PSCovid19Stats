@@ -1,153 +1,64 @@
-function Get-CovidAllStats {
+function Get-CovidStateStats {
 
     <#
+
         .SYNOPSIS
-        Command used to extract data (Global Stats) from the NovelCOVID API (github.com/NovelCOVID/API).
-    
+        Command used to extract Data for all US States from the NovelCOVID API (github.com/NovelCOVID/API)
+
         .DESCRIPTION
-        This command can be used to extract data (Global Stats) from the NovelCOVID API (github.com/NovelCOVID/API). It will extract the global statistics and includes: cases, deaths, recovered, time last updated, and active cases. This data is updated every 10 minutes.
-    
+        Command used to extract John HOpkins CSSE Data from the NovelCOVID API (github.com/NovelCOVID/API)
+        Return data from the John Hopkins CSSE Data Repository (Provinces and such).
+
         .INPUTS
-        None. You cannot pipe objects to Get-CovidAllStats
-    
+        None. You cannot pipe objects to Get-CovidStateStats
+
         .OUTPUTS
-        System.String. Get-CovidAllStats returns a string with all of the stats for every country affected with Covid-19.
-    
-        .EXAMPLE
-        Get-CovidAllStats
-
-        deathsPerOneMillion    : 57.3
-        activePerOneMillion    : 451.07
-        oneDeathPerPeople      : 0
-        deaths                 : 446666
-        oneTestPerPeople       : 0
-        critical               : 54576
-        oneCasePerPeople       : 0
-        criticalPerOneMillion  : 7.04
-        active                 : 3498202
-        recovered              : 4341839
-        tests                  : 117370255
-        casesPerOneMillion     : 1063
-        updated                : 1592390360372
-        todayRecovered         : 39052
-        recoveredPerOneMillion : 559.85
-        testsPerOneMillion     : 15134.07
-        todayCases             : 35483
-        todayDeaths            : 1478
-        population             : 7755366723
-        affectedCountries      : 215
-        cases                  : 8286707
+        System.String. Get-CovidStateStats returns a string with all of the Covid-19 stats for all US States
 
         .EXAMPLE
-        Get-CovidAllStats -yesterday
-
-        deathsPerOneMillion    : 57.3
-        activePerOneMillion    : 451.14
-        oneDeathPerPeople      : 0
-        deaths                 : 446667
-        oneTestPerPeople       : 0
-        critical               : 54576
-        oneCasePerPeople       : 0
-        criticalPerOneMillion  : 7.04
-        active                 : 3498778
-        recovered              : 4341848
-        tests                  : 117386313
-        casesPerOneMillion     : 1063
-        updated                : 1592390960163
-        todayRecovered         : 39061
-        recoveredPerOneMillion : 559.85
-        testsPerOneMillion     : 15136.14
-        todayCases             : 36069
-        todayDeaths            : 1479
-        population             : 7755366723
-        affectedCountries      : 215
-        cases                  : 8287293
+        PS C:\GitRepos> Get-CovidStateStats
 
         .LINK
-        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidAllStats
-    
-        .NOTES
-        Author:     Luke Leigh
-        Website:    https://blog.lukeleigh.com/
-        LinkedIn:   https://www.linkedin.com/in/lukeleigh/
-        GitHub:     https://github.com/BanterBoy/
-        GitHubGist: https://gist.github.com/BanterBoy
-    
-    #>
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidStateStats
 
-    [CmdletBinding(DefaultParameterSetName = 'Default',
-        SupportsShouldProcess = $false,
-        PositionalBinding = $false,
-        ConfirmImpact = 'Medium')]
-    param(
-        [Parameter(Mandatory = $false,
-            ValueFromPipeline = $false,
-            ValueFromPipelineByPropertyName = $false,
-            ParameterSetName = 'Default')]
-        [switch]$yesterday
-    )
+        .NOTES
+        Author: Luke Leigh  
+        Website: https://blog.lukeleigh.com  
+        LinkedIn: https://www.linkedin.com/in/lukeleigh  
+        GitHub: https://github.com/BanterBoy  
+        GitHubGist: https://gist.github.com/BanterBoy  
+
+    #>
 
 
     BEGIN {
-        if ( $yesterday ) { $URI = "https://corona.lmao.ninja/v2/all?yesterday" }
-        else { $URI = "https://corona.lmao.ninja/v2/all" }
+        
     }
-
+    
     PROCESS {
-
-        $AllStatsHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-        $AllStatsHeaders.Add("Cookie", "__cfduid=da03e729af67bf9c91ba81e024407965b1592138079")
-        $AllStatsResponses = Invoke-RestMethod "$URI" -Method 'GET' -Headers $AllStatsHeaders -Body $body
-
-        foreach ($Response in $AllStatsResponses) {
+        $StateHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+        $StateHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
+        $StateResponses = Invoke-RestMethod 'https://corona.lmao.ninja/v2/states' -Method 'GET' -Headers $StateHeaders -Body $body
+        
+        foreach ($Response in $StateResponses) {
             try {
                 $properties = @{
-                    active                 = [long]$Response.active
-                    activePerOneMillion    = [double]$Response.activePerOneMillion
-                    affectedCountries      = [long]$Response.affectedCountries
-                    cases                  = [long]$Response.cases
-                    casesPerOneMillion     = [long]$Response.casesPerOneMillion
-                    critical               = [long]$Response.critical
-                    criticalPerOneMillion  = [double]$Response.criticalPerOneMillion
-                    deaths                 = [long]$Response.deaths
-                    deathsPerOneMillion    = [double]$Response.deathsPerOneMillion
-                    oneCasePerPeople       = [long]$Response.oneCasePerPeople
-                    oneDeathPerPeople      = [long]$Response.oneDeathPerPeople
-                    oneTestPerPeople       = [long]$Response.oneTestPerPeople
-                    population             = [long]$Response.population
-                    recovered              = [long]$Response.recovered
-                    recoveredPerOneMillion = [double]$Response.recoveredPerOneMillion
-                    tests                  = [long]$Response.tests
-                    testsPerOneMillion     = [double]$Response.testsPerOneMillion
-                    todayCases             = [long]$Response.todayCases
-                    todayDeaths            = [long]$Response.todayDeaths
-                    todayRecovered         = [long]$Response.todayRecovered
-                    updated                = [long]$Response.updated
+                    State       = [string]$Response.state
+                    TodayCases  = [int]$Response.todayCases
+                    TodayDeaths = [int]$Response.todayDeaths
+                    Cases       = [int]$Response.cases
+                    Active      = [int]$Response.active
+                    Deaths      = [int]$Response.deaths
                 }
             }
             catch {
                 $properties = @{
-                    active                 = [long]$Response.active
-                    activePerOneMillion    = [double]$Response.activePerOneMillion
-                    affectedCountries      = [long]$Response.affectedCountries
-                    cases                  = [long]$Response.cases
-                    casesPerOneMillion     = [long]$Response.casesPerOneMillion
-                    critical               = [long]$Response.critical
-                    criticalPerOneMillion  = [double]$Response.criticalPerOneMillion
-                    deaths                 = [long]$Response.deaths
-                    deathsPerOneMillion    = [double]$Response.deathsPerOneMillion
-                    oneCasePerPeople       = [long]$Response.oneCasePerPeople
-                    oneDeathPerPeople      = [long]$Response.oneDeathPerPeople
-                    oneTestPerPeople       = [long]$Response.oneTestPerPeople
-                    population             = [long]$Response.population
-                    recovered              = [long]$Response.recovered
-                    recoveredPerOneMillion = [double]$Response.recoveredPerOneMillion
-                    tests                  = [long]$Response.tests
-                    testsPerOneMillion     = [double]$Response.testsPerOneMillion
-                    todayCases             = [long]$Response.todayCases
-                    todayDeaths            = [long]$Response.todayDeaths
-                    todayRecovered         = [long]$Response.todayRecovered
-                    updated                = [long]$Response.updated
+                    State       = [string]$Response.state
+                    TodayCases  = [int]$Response.todayCases
+                    TodayDeaths = [int]$Response.todayDeaths
+                    Cases       = [int]$Response.cases
+                    Active      = [int]$Response.active
+                    Deaths      = [int]$Response.deaths
                 }
             }
             finally {
