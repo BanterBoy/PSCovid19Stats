@@ -13,19 +13,27 @@ function Show-CountryCodes {
         System.String. Show-CountryCodes returns a string with all of the ISO Country Codes.
     
         .EXAMPLE
-        PS C:\GitRepos> Show-CountryCodes
-        Code Name
-        ---- ----
-        AF   Afghanistan
-        AX   Åland Islands
-        AL   Albania
-        DZ   Algeria
-        AS   American Samoa
-        AD   Andorra
-        AO   Angola
-        AI   Anguilla
-        AQ   Antarctica
-        ...............
+        Show-CountryCodes | more
+
+        Name                                         Code
+        ----                                         ----
+        Afghanistan                                  AF
+        Åland Islands                                AX
+        Albania                                      AL
+        Algeria                                      DZ
+        American Samoa                               AS
+        Andorra                                      AD
+        Angola                                       AO
+        Anguilla                                     AI
+        Antarctica                                   AQ
+        Antigua and Barbuda                          AG
+        Argentina                                    AR
+        Armenia                                      AM
+        Aruba                                        AW
+        Australia                                    AU
+        Austria                                      AT
+        Azerbaijan                                   AZ
+        -- More  --
 
         .LINK
         https://github.com/BanterBoy/PSCovid19Stats/wiki/Show-CountryCodes
