@@ -1,4 +1,4 @@
-function Get-Get-CovidState {
+function Get-CovidState {
 
     <#
 
@@ -6,20 +6,33 @@ function Get-Get-CovidState {
         Command used to extract Data for all US States from the NovelCOVID API (github.com/NovelCOVID/API)
 
         .DESCRIPTION
-        Command used to extract John HOpkins CSSE Data from the NovelCOVID API (github.com/NovelCOVID/API)
-        Return data from the John Hopkins CSSE Data Repository (Provinces and such).
+        Command used to extract Data for select US States from the NovelCOVID API (github.com/NovelCOVID/API). Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases. Data is updated every 10 minutes.
+
+        The default sorting for this command is active cases if no sorting option is selected.
 
         .INPUTS
-        None. You cannot pipe objects to Get-Get-CovidState
+        You can pipe the string for "state" objects to Get-CovidState
 
         .OUTPUTS
-        System.String. Get-Get-CovidState returns a string with all of the Covid-19 stats for all US States
+        System.String. Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases. Data is updated every 10 minutes.
 
         .EXAMPLE
-        PS C:\GitRepos> Get-Get-CovidState
+        Get-CovidState -state "New Hampshire"
+
+        updated             : 1592552385569
+        cases               : 5450
+        testsPerOneMillion  : 88675
+        todayDeaths         : 0
+        todayCases          : 0
+        deathsPerOneMillion : 243
+        deaths              : 331
+        state               : New Hampshire
+        active              : 1015
+        casesPerOneMillion  : 4008
+        tests               : 120573
 
         .LINK
-        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-Get-CovidState
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidState
 
         .NOTES
         Author: Luke Leigh  
@@ -30,35 +43,66 @@ function Get-Get-CovidState {
 
     #>
 
+    [CmdletBinding(DefaultParameterSetName = 'Default',
+        SupportsShouldProcess = $false,
+        PositionalBinding = $false,
+        ConfirmImpact = 'Medium')]
+    param(
+        [Parameter(Mandatory = $false,
+            ValueFromPipeline = $false,
+            ValueFromPipelineByPropertyName = $false,
+            ParameterSetName = 'Default')]
+        [switch]$yesterday,
+        [Parameter(Mandatory = $true,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
+            ParameterSetName = 'Default')]
+        [string]$state
+    )
 
     BEGIN {
-        
+        if ( $yesterday ) {
+            $URI = "https://corona.lmao.ninja/v2/states/$state?yesterday=$yesterday"
+        }
+        else {
+            $URI = "https://corona.lmao.ninja/v2/states/$state"
+        }
     }
-    
+
     PROCESS {
-        $StateHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-        $StateHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $StateResponses = Invoke-RestMethod 'https://corona.lmao.ninja/v2/states' -Method 'GET' -Headers $StateHeaders -Body $body
+        $stateHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+        $stateHeaders.Add("Cookie", "__cfduid=da03e729af67bf9c91ba81e024407965b1592138079")
+        $stateResponses = Invoke-RestMethod $URI -Method 'GET' -Headers $stateHeaders -Body $body
         
-        foreach ($Response in $StateResponses) {
+        foreach ($Response in $stateResponses) {
             try {
                 $properties = @{
-                    State       = [string]$Response.state
-                    TodayCases  = [int]$Response.todayCases
-                    TodayDeaths = [int]$Response.todayDeaths
-                    Cases       = [int]$Response.cases
-                    Active      = [int]$Response.active
-                    Deaths      = [int]$Response.deaths
+                    state               = [string]$Response.state
+                    active              = [long]$Response.active
+                    cases               = [long]$Response.cases
+                    todayCases          = [long]$Response.todayCases
+                    casesPerOneMillion  = [long]$Response.casesPerOneMillion
+                    deaths              = [long]$Response.deaths
+                    todayDeaths         = [long]$Response.todayDeaths
+                    deathsPerOneMillion	= [long]$Response.deathsPerOneMillion
+                    tests               = [long]$Response.tests
+                    testsPerOneMillion  = [long]$Response.testsPerOneMillion
+                    updated             = [long]$Response.updated
                 }
             }
             catch {
                 $properties = @{
-                    State       = [string]$Response.state
-                    TodayCases  = [int]$Response.todayCases
-                    TodayDeaths = [int]$Response.todayDeaths
-                    Cases       = [int]$Response.cases
-                    Active      = [int]$Response.active
-                    Deaths      = [int]$Response.deaths
+                    state               = [string]$Response.state
+                    active              = [long]$Response.active
+                    cases               = [long]$Response.cases
+                    todayCases          = [long]$Response.todayCases
+                    casesPerOneMillion  = [long]$Response.casesPerOneMillion
+                    deaths              = [long]$Response.deaths
+                    todayDeaths         = [long]$Response.todayDeaths
+                    deathsPerOneMillion	= [long]$Response.deathsPerOneMillion
+                    tests               = [long]$Response.tests
+                    testsPerOneMillion  = [long]$Response.testsPerOneMillion
+                    updated             = [long]$Response.updated
                 }
             }
             finally {
