@@ -38,5 +38,34 @@ function Show-CountryCodes {
         GitHubGist: https://gist.github.com/BanterBoy
     
     #>
-    Invoke-RestMethod -Uri 'https://datahub.io/core/country-list/r/data.json'
+
+    BEGIN {
+
+    }
+    
+    PROCESS {
+        $countryCodes = Invoke-RestMethod -Uri 'https://datahub.io/core/country-list/r/data.json'
+        foreach ($code in $countryCodes) {
+            try {
+                $properties = @{
+                    Code = [string]$code.Code
+                    Name = [string]$code.Name
+                }
+            }
+            catch {
+                $properties = @{
+                    Code = [string]$code.Code
+                    Name = [string]$code.Name
+                }
+            }
+            finally {
+                $obj = New-Object -TypeName PSObject -Property $Properties
+                Write-Output $obj
+            }
+        }
+    }
+
+    END {
+
+    }
 }
