@@ -13,7 +13,25 @@ function Show-StateList {
         System.String. Show-StateList returns a string containing all American States.
     
         .EXAMPLE
+        Show-StateList | Sort-Object State | more
 
+        state
+        -----
+        Alabama
+        Alaska
+        Arizona
+        Arkansas
+        California
+        Colorado
+        Connecticut
+        Delaware
+        Diamond Princess Ship
+        District Of Columbia
+        Federal Prisons
+        Florida
+        Georgia
+        Grand Princess Ship
+        -- More  --
 
         .LINK
         https://github.com/BanterBoy/PSCovid19Stats/wiki/Show-StateList
