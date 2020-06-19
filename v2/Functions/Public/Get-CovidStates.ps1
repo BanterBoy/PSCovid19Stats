@@ -1,4 +1,4 @@
-function Get-CovidStateStats {
+function Get-CovidStates {
 
     <#
 
@@ -11,13 +11,13 @@ function Get-CovidStateStats {
         The default sorting for this command is active cases if no sorting option is selected.
 
         .INPUTS
-        None. You cannot pipe objects to Get-CovidStateStats
+        None. You cannot pipe objects to Get-CovidStates
 
         .OUTPUTS
         System.String. Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases. Data is updated every 10 minutes.
 
         .EXAMPLE
-        PS C:\GitRepos> Get-CovidStateStats
+        PS C:\GitRepos> Get-CovidStates
 
         [
             {
@@ -49,7 +49,7 @@ function Get-CovidStateStats {
         ]
 
         .LINK
-        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidStateStats
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidStates
 
         .NOTES
         Author: Luke Leigh  
