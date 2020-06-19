@@ -1,4 +1,4 @@
-function Get-CovidStateStats {
+function Get-Get-CovidState {
 
     <#
 
@@ -10,16 +10,16 @@ function Get-CovidStateStats {
         Return data from the John Hopkins CSSE Data Repository (Provinces and such).
 
         .INPUTS
-        None. You cannot pipe objects to Get-CovidStateStats
+        None. You cannot pipe objects to Get-Get-CovidState
 
         .OUTPUTS
-        System.String. Get-CovidStateStats returns a string with all of the Covid-19 stats for all US States
+        System.String. Get-Get-CovidState returns a string with all of the Covid-19 stats for all US States
 
         .EXAMPLE
-        PS C:\GitRepos> Get-CovidStateStats
+        PS C:\GitRepos> Get-Get-CovidState
 
         .LINK
-        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidStateStats
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-Get-CovidState
 
         .NOTES
         Author: Luke Leigh  
