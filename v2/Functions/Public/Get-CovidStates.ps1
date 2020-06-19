@@ -6,17 +6,45 @@ function Get-CovidStateStats {
         Command used to extract Data for all US States from the NovelCOVID API (github.com/NovelCOVID/API)
 
         .DESCRIPTION
-        Command used to extract John HOpkins CSSE Data from the NovelCOVID API (github.com/NovelCOVID/API)
-        Return data from the John Hopkins CSSE Data Repository (Provinces and such).
+        Command used to extract Data for all US States from the NovelCOVID API (github.com/NovelCOVID/API). Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases. Data is updated every 10 minutes.
 
         .INPUTS
         None. You cannot pipe objects to Get-CovidStateStats
 
         .OUTPUTS
-        System.String. Get-CovidStateStats returns a string with all of the Covid-19 stats for all US States
+        System.String. Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases. Data is updated every 10 minutes.
 
         .EXAMPLE
         PS C:\GitRepos> Get-CovidStateStats
+
+        [
+            {
+                "state": "Wyoming",
+                "updated": 1592525381158,
+                "cases": 1114,
+                "todayCases": 25,
+                "deaths": 18,
+                "todayDeaths": 0,
+                "active": 234,
+                "casesPerOneMillion": 1925,
+                "deathsPerOneMillion": 31,
+                "tests": 35069,
+                "testsPerOneMillion": 60593
+            },
+            {
+                "state": "Wuhan Repatriated",
+                "updated": 1592525381158,
+                "cases": 3,
+                "todayCases": 0,
+                "deaths": 0,
+                "todayDeaths": 0,
+                "active": 3,
+                "casesPerOneMillion": 0,
+                "deathsPerOneMillion": 0,
+                "tests": 3,
+                "testsPerOneMillion": 0
+            }
+        ]
 
         .LINK
         https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidStateStats
@@ -30,35 +58,64 @@ function Get-CovidStateStats {
 
     #>
 
+    [CmdletBinding(DefaultParameterSetName = 'Default',
+        SupportsShouldProcess = $false,
+        PositionalBinding = $false,
+        ConfirmImpact = 'Medium')]
+    param(
+        [Parameter(Mandatory = $false,
+            ValueFromPipeline = $false,
+            ValueFromPipelineByPropertyName = $false,
+            ParameterSetName = 'Default')]
+        [switch]$yesterday,
+        [Parameter(Mandatory = $false,
+            ValueFromPipeline = $false,
+            ValueFromPipelineByPropertyName = $false,
+            ParameterSetName = 'Default')]
+        [ValidateSet('cases', 'todayCases', 'deaths', 'todayDeaths', 'active')]
+        [string]$sort = 'active'
+    )
+
 
     BEGIN {
-        
+        if ( $yesterday ) { $URI = "https://corona.lmao.ninja/v2/states?sort=$sort&yesterday=$yesterday" }
+        else { $URI = "https://corona.lmao.ninja/v2/states?sort=$sort" }
     }
     
     PROCESS {
-        $StateHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-        $StateHeaders.Add("Cookie", "__cfduid=d6907f091c38e985d84bd05e1faf548a61585349147")
-        $StateResponses = Invoke-RestMethod 'https://corona.lmao.ninja/v2/states' -Method 'GET' -Headers $StateHeaders -Body $body
+        $statesHeaders = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+        $statesHeaders.Add("Cookie", "__cfduid=da03e729af67bf9c91ba81e024407965b1592138079")
+        $statesResponses = Invoke-RestMethod "$URI" -Method 'GET' -Headers $statesHeaders -Body $body
         
-        foreach ($Response in $StateResponses) {
+        foreach ($Response in $statesResponses) {
             try {
                 $properties = @{
-                    State       = [string]$Response.state
-                    TodayCases  = [int]$Response.todayCases
-                    TodayDeaths = [int]$Response.todayDeaths
-                    Cases       = [int]$Response.cases
-                    Active      = [int]$Response.active
-                    Deaths      = [int]$Response.deaths
+                    state               = [string]$Response.state
+                    active              = [string]$Response.active
+                    cases               = [string]$Response.cases
+                    todayCases          = [string]$Response.todayCases
+                    casesPerOneMillion  = [string]$Response.casesPerOneMillion
+                    deaths              = [string]$Response.deaths
+                    todayDeaths         = [string]$Response.todayDeaths
+                    deathsPerOneMillion	= [string]$Response.deathsPerOneMillion
+                    tests               = [string]$Response.tests
+                    testsPerOneMillion  = [string]$Response.testsPerOneMillion
+                    updated             = [string]$Response.updated
                 }
             }
             catch {
                 $properties = @{
-                    State       = [string]$Response.state
-                    TodayCases  = [int]$Response.todayCases
-                    TodayDeaths = [int]$Response.todayDeaths
-                    Cases       = [int]$Response.cases
-                    Active      = [int]$Response.active
-                    Deaths      = [int]$Response.deaths
+                    state               = [string]$Response.state
+                    active              = [string]$Response.active
+                    cases               = [string]$Response.cases
+                    todayCases          = [string]$Response.todayCases
+                    casesPerOneMillion  = [string]$Response.casesPerOneMillion
+                    deaths              = [string]$Response.deaths
+                    todayDeaths         = [string]$Response.todayDeaths
+                    deathsPerOneMillion	= [string]$Response.deathsPerOneMillion
+                    tests               = [string]$Response.tests
+                    testsPerOneMillion  = [string]$Response.testsPerOneMillion
+                    updated             = [string]$Response.updated
                 }
             }
             finally {
