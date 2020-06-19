@@ -1,34 +1,22 @@
 function Show-StateList {
     <#
         .SYNOPSIS
-        Command used to display a list of Country Codes
+        Command used to display a list of American States
     
         .DESCRIPTION
-        This Command can be used to display a list of standard Country Codes from the standard [ISO Country Codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
+        This Command used to display a list of America States derived from the states API call.
     
         .INPUTS
-        None. You cannot pipe objects to Show-CountryCodes
+        None. You cannot pipe objects to Show-StateList
     
         .OUTPUTS
-        System.String. Show-CountryCodes returns a string with all of the ISO Country Codes.
+        System.String. Show-StateList returns a string containing all American States.
     
         .EXAMPLE
-        PS C:\GitRepos> Show-CountryCodes
-        Code Name
-        ---- ----
-        AF   Afghanistan
-        AX   Åland Islands
-        AL   Albania
-        DZ   Algeria
-        AS   American Samoa
-        AD   Andorra
-        AO   Angola
-        AI   Anguilla
-        AQ   Antarctica
-        ...............
+
 
         .LINK
-        https://github.com/BanterBoy/PSCovid19Stats/wiki/Show-CountryCodes
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Show-StateList
     
         .NOTES
         Author:     Luke Leigh
@@ -40,7 +28,7 @@ function Show-StateList {
     #>
 
     BEGIN {
-        $URI = "https://corona.lmao.ninja/v2/states?sort=$sort"
+        $URI = "https://corona.lmao.ninja/v2/states"
     }
     
     PROCESS {
@@ -60,7 +48,7 @@ function Show-StateList {
             }
             finally {
                 $obj = New-Object -TypeName PSObject -Property $Properties
-                $obj | Sort-Object -Property state | Write-Output $obj
+                Write-Output $obj
             }
         }
     }
