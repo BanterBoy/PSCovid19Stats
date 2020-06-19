@@ -8,6 +8,8 @@ function Get-CovidStateStats {
         .DESCRIPTION
         Command used to extract Data for all US States from the NovelCOVID API (github.com/NovelCOVID/API). Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases. Data is updated every 10 minutes.
 
+        The default sorting for this command is active cases if no sorting option is selected.
+
         .INPUTS
         None. You cannot pipe objects to Get-CovidStateStats
 
@@ -91,31 +93,31 @@ function Get-CovidStateStats {
             try {
                 $properties = @{
                     state               = [string]$Response.state
-                    active              = [string]$Response.active
-                    cases               = [string]$Response.cases
-                    todayCases          = [string]$Response.todayCases
-                    casesPerOneMillion  = [string]$Response.casesPerOneMillion
-                    deaths              = [string]$Response.deaths
-                    todayDeaths         = [string]$Response.todayDeaths
-                    deathsPerOneMillion	= [string]$Response.deathsPerOneMillion
-                    tests               = [string]$Response.tests
-                    testsPerOneMillion  = [string]$Response.testsPerOneMillion
-                    updated             = [string]$Response.updated
+                    active              = [long]$Response.active
+                    cases               = [long]$Response.cases
+                    todayCases          = [long]$Response.todayCases
+                    casesPerOneMillion  = [long]$Response.casesPerOneMillion
+                    deaths              = [long]$Response.deaths
+                    todayDeaths         = [long]$Response.todayDeaths
+                    deathsPerOneMillion	= [long]$Response.deathsPerOneMillion
+                    tests               = [long]$Response.tests
+                    testsPerOneMillion  = [long]$Response.testsPerOneMillion
+                    updated             = [long]$Response.updated
                 }
             }
             catch {
                 $properties = @{
                     state               = [string]$Response.state
-                    active              = [string]$Response.active
-                    cases               = [string]$Response.cases
-                    todayCases          = [string]$Response.todayCases
-                    casesPerOneMillion  = [string]$Response.casesPerOneMillion
-                    deaths              = [string]$Response.deaths
-                    todayDeaths         = [string]$Response.todayDeaths
-                    deathsPerOneMillion	= [string]$Response.deathsPerOneMillion
-                    tests               = [string]$Response.tests
-                    testsPerOneMillion  = [string]$Response.testsPerOneMillion
-                    updated             = [string]$Response.updated
+                    active              = [long]$Response.active
+                    cases               = [long]$Response.cases
+                    todayCases          = [long]$Response.todayCases
+                    casesPerOneMillion  = [long]$Response.casesPerOneMillion
+                    deaths              = [long]$Response.deaths
+                    todayDeaths         = [long]$Response.todayDeaths
+                    deathsPerOneMillion	= [long]$Response.deathsPerOneMillion
+                    tests               = [long]$Response.tests
+                    testsPerOneMillion  = [long]$Response.testsPerOneMillion
+                    updated             = [long]$Response.updated
                 }
             }
             finally {
