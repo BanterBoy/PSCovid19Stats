@@ -1,4 +1,4 @@
-function Get-CovidCountryStats {
+function Get-CovidCountry {
 
     <#
         .SYNOPSIS
@@ -13,14 +13,14 @@ function Get-CovidCountryStats {
         This field uses the standard [ISO Country Codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
     
         .INPUTS
-        None. You cannot pipe objects to Get-CovidCountryStats
+        None. You cannot pipe objects to Get-CovidCountry
     
         .OUTPUTS
         System.String. Get-CovidCountriesStats returns a string with all of the Covid-19 stats for the
         specified country.
     
         .EXAMPLE
-        PS C:\GitRepos> Get-CovidCountryStats -Country UK
+        PS C:\GitRepos> Get-CovidCountry -Country UK
         
         DeathsPerOneMillion : 18
         TodayCases          : 2433
@@ -34,7 +34,7 @@ function Get-CovidCountryStats {
         Cases               : 19522
 
         .LINK
-        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidCountryStats
+        https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidCountry
     
         .NOTES
         Author:     Luke Leigh
@@ -49,7 +49,7 @@ function Get-CovidCountryStats {
     [CmdletBinding(DefaultParameterSetName = 'ParameterSet1',
         SupportsShouldProcess = $false,
         PositionalBinding = $false,
-        HelpUri = 'https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidCountryStats',
+        HelpUri = 'https://github.com/BanterBoy/PSCovid19Stats/wiki/Get-CovidCountry',
         ConfirmImpact = 'Medium')]
     param(
         [Parameter(Mandatory = $true,
@@ -119,3 +119,59 @@ function Get-CovidCountryStats {
     }
 
 }
+
+
+<#
+
+GET All Countries
+https://corona.lmao.ninja/v2/countries?yesterday&sort
+Returns a JSON array with an element for each country that has stats available. This includes iso codes, lat/long, a link to the country flag, cases, new cases, deaths, new deaths, recovered, active cases, critical cases, and cases/deaths per one million people. Data is updated every 10 minutes.
+
+PARAMS
+yesterday
+For this parameter you can show yesterday data
+
+Available values : true, false, 1, 0.
+
+sort
+For this parameter you can provide a key from the country model (e.g. cases, todayCases, deaths, recovered, active, etc) to sort the countries from greatest to least, depending on the key
+
+Available values : cases, todayCases, deaths, todayDeaths, recovered, active, critical, casesPerOneMillion, deathsPerOneMillion.
+
+
+GET Specific Contry
+https://corona.lmao.ninja/v2/countries/:query?yesterday=true&strict=true&query
+Get the same data from the /countries endpoint, but filter down to a specific country.
+
+PARAMS
+yesterdaytrue
+For this parameter you can show yesterday data
+
+Available values : true, false, 1, 0.
+
+stricttrue
+Defaults to true. Setting to false gives you the ability to fuzzy search countries. Example Oman vs. rOMANia
+
+query
+Required
+
+PATH VARIABLES
+queryItaly
+For this parameter you can use Country Name && Country Id && ISOs (ISO 2 | ISO 3) 3166 Country Standards
+
+
+GET Multiple Countries
+https://corona.lmao.ninja/v2/countries/:query?yesterday
+Get the same data from the /countries endpoint, but filter down to multiple specific countries. Data is updated every 10 minutes.
+
+PARAMS
+yesterday
+For this parameter you can show yesterday data
+
+Available values : true, false, 1, 0.
+
+PATH VARIABLES
+queryItaly,Brazil
+For this parameter you can use multiple Country Names && Country Ids && ISOs (ISO 2 | ISO 3) 3166 Country Standards separated by commas
+
+#>
