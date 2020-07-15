@@ -95,7 +95,7 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags       = 'Reporting', 'Report', 'COVID-19'
+            Tags       = 'COVID', 'COVID-19', 'JohnsHopkins', 'NYT', 'NewYorkTimes','Report', 'Reporting'
 
             # A URL to the license for this module.
             LicenseUri = 'https://github.com/BanterBoy/PSCovid19Stats/blob/master/LICENSE'
