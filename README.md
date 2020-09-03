@@ -4,7 +4,7 @@
 |-----|--|
 | About: | Generic details regarding this project. |
 
-![Postman COVID-19 API Resources](https://psciscomeraki.lukeleigh.com/assets/images/postmanlogo.jpg)
+![Postman COVID-19 API Resources](https://blog.lukeleigh.com/assets/images/postmanlogo.jpg)
 
 A PowerShell Module that can be used to extract data from the NovelCOVID API (github.com/NovelCOVID/API). The API has been supplied by Postman as part of the ***"Postman COVID-19 API Resource Center"***
 
@@ -48,7 +48,7 @@ REMARKS
 ```
 Also, this module is now using the standard [ISO Country Codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) which can now be used in tab completion.
 
-![Tab Complete](https://psciscomeraki.lukeleigh.com/assets/images/CountryTabComplete.png)
+![Tab Complete](https://blog.lukeleigh.com/assets/images/PSCiscoMeraki/CountryTabComplete.png)
 
 ## Getting Started
 
@@ -93,6 +93,6 @@ Function        Get-CovidWorldStats                                1.0.2      PS
 Function        Show-CountryCodes                                  1.0.2      PSCovid19Stats
 ```
 
-![COVID-19 Example](https://psciscomeraki.lukeleigh.com/assets/images/pscovidscrnsht.png)
+![COVID-19 Example](https://blog.lukeleigh.com/assets/images/PSCiscoMeraki/pscovidscrnsht.png)
 
 [License](/LICENSE)
