@@ -1,5 +1,3 @@
-### [PSCovid19Stats](https://blog.lukeleigh.com/blog/module/PSCovid19Stats/)
-
 [![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/PSCovid19Stats?label=PSCovid19Stats&logo=powershell&style=plastic)](https://www.powershellgallery.com/packages/PSCovid19Stats)
 [![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/PSCovid19Stats?style=plastic)](https://www.powershellgallery.com/packages/PSCovid19Stats)
 
