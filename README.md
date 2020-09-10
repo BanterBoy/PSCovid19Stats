@@ -1,3 +1,10 @@
+### [PSCovid19Stats](https://blog.lukeleigh.com/blog/module/PSCovid19Stats/)
+
+[![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/PSCovid19Stats?label=PSCovid19Stats&logo=powershell&style=plastic)](https://www.powershellgallery.com/packages/PSCovid19Stats)
+[![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/PSCovid19Stats?style=plastic)](https://www.powershellgallery.com/packages/PSCovid19Stats)
+
+[![Build Status](https://dev.azure.com/lukeleigh/Module%20Deployment/_apis/build/status/BanterBoy.PSCovid19Stats?branchName=master)](https://dev.azure.com/lukeleigh/Module%20Deployment/_build/latest?definitionId=1&branchName=master)
+
 # PSCovid19Stats
 
 | Name: | README.md |
